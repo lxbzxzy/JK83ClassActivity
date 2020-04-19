@@ -1,0 +1,48 @@
+.about-banner{
+  overflow:hidden;  
+  display: block;  
+  width: 250rpx;  
+  height: 250rpx;  
+  margin-top: 50rpx;
+  margin-left:250rpx;  
+  border-radius:100%;
+  border: 2px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.input{
+  margin:50rpx;
+  background-color:snow;
+  height:100rpx;
+}
+
+.intro{
+  margin-left:50rpx;
+  margin-right:50rpx;
+  width:650rpx;
+  text-align: left;
+  font-size:35rpx;
+}
+
+.input1{
+  margin:70rpx;
+  margin-right:30rpx;
+  font-size:45rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
+.button{
+  margin-top:30rpx;
+  margin-bottom:30rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+}
+
+.simplelogin{
+  top:300rpx
+}
+
+.wechatlogin{
+  top:300rpx
+}

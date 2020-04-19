@@ -1,0 +1,104 @@
+<view>
+  <view class="title">
+    <view>班级活动与ddl提醒(日历版)</view>
+    <view style="font-weight:lighter;font-size:30rpx;color:#0066cc;text-decoration:underline" bindtap="gotoSheet">点击进入列表版</view>
+  </view>
+
+  <view class="weui-cells__title" style="font-size:30rpx;">\t\t下表展示的是本周和下一周的班级活动情况，其中紫色表示作业、蓝色表示班级活动、红色表示考试，点击任何一天即可查看该日任务情况</view>
+
+  <view class="background">
+    <view style="display:flex;flex-direction:row;">
+      <view class="month2">date</view>
+      <view wx:for="{{calendar0}}" wx:key="item" class="day">{{item}}</view>
+    </view>
+    <view style="display:flex;flex-direction:row;">
+      <view class="month">{{thisWeekMonth}}</view>
+      <view wx:for="{{calendar1}}" wx:key="date" class="date">
+        <view wx:if="{{(item.day==selectedDay&&item.week==selectedWeek)}}" style="height:116rpx;border:2rpx solid rgb(108,0,216)">
+          <view class="dateitem0" wx:if="{{item.day>=day}}">{{item.date}}</view>
+          <view class="dateitem1" wx:if="{{item.day<day}}">{{item.date}}</view>
+          <view class="task">
+            <view class="homework" wx:if="{{item.homework!=0&&item.day>=day}}"></view>
+            <view class="activity" wx:if="{{item.activity!=0&&item.day>=day}}"></view>
+            <view class="exam" wx:if="{{item.exam!=0&&item.day>=day}}"></view>
+            <view class="homework1" wx:if="{{item.homework!=0&&item.day<day}}"></view>
+            <view class="activity1" wx:if="{{item.activity!=0&&item.day<day}}"></view>
+            <view class="exam1" wx:if="{{item.exam!=0&&item.day<day}}"></view>
+          </view>
+          <view style="height:11rpx"></view>
+        </view>
+        <view wx:if="{{item.day!=selectedDay||item.week!=selectedWeek}}" bindtap="changeSelected1"  data-index = '{{index}}'>
+          <view class="dateitem0" wx:if="{{item.day>=day}}">{{item.date}}</view>
+          <view class="dateitem1" wx:if="{{item.day<day}}">{{item.date}}</view>
+          <view class="task">
+            <view class="homework" wx:if="{{item.homework!=0&&item.day>=day}}"></view>
+            <view class="activity" wx:if="{{item.activity!=0&&item.day>=day}}"></view>
+            <view class="exam" wx:if="{{item.exam!=0&&item.day>=day}}"></view>
+            <view class="homework1" wx:if="{{item.homework!=0&&item.day<day}}"></view>
+            <view class="activity1" wx:if="{{item.activity!=0&&item.day<day}}"></view>
+            <view class="exam1" wx:if="{{item.exam!=0&&item.day<day}}"></view>
+          </view>
+          <view style="height:11rpx"></view>
+        </view>
+      </view>  
+    </view>
+    <view style="display:flex;flex-direction:row;">
+      <view class="month">{{nextWeekMonth}}</view>
+      <view wx:for="{{calendar2}}" wx:key="date" class="date">
+        <view wx:if="{{(item.day==selectedDay&&item.week==selectedWeek)}}" style="height:116rpx;border:2rpx solid rgb(108,0,216)">
+          <view class="dateitem0">{{item.date}}</view>
+          <view class="task">
+            <view class="homework" wx:if="{{item.homework!=0}}"></view>
+            <view class="activity" wx:if="{{item.activity!=0}}"></view>
+            <view class="exam" wx:if="{{item.exam!=0}}"></view>
+          </view>
+          <view style="height:11rpx"></view>  
+        </view>
+        <view wx:if="{{item.day!=selectedDay||item.week!=selectedWeek}}" bindtap="changeSelected2"  data-index = '{{index}}'>
+          <view class="dateitem0">{{item.date}}</view>
+          <view class="task">
+            <view class="homework" wx:if="{{item.homework!=0}}"></view>
+            <view class="activity" wx:if="{{item.activity!=0}}"></view>
+            <view class="exam" wx:if="{{item.exam!=0}}"></view>
+          </view>
+          <view style="height:11rpx"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">当日任务</view>
+  <view wx:if="{{available}}" style="text-align:center;color:grey">当日无任务</view>
+  <view wx:for="{{dealtData}}" wx:key="detail">
+    <view wx:if="{{item.id-selectedWeek*100-selectedDay*10>0&&item.id-selectedWeek*100-selectedDay*10<10}}">
+      <view class="total">
+        <view class="left">
+          <view class="left">
+          <view class="detailinfo1" style="color:darkviolet" wx:if="{{item.mode=='作业'}}">
+            <view wx:if="{{item.direction=='all'}}">作业（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">作业（个人）</view>
+          </view>
+          <view class="detailinfo1" style="color:#0066cc" wx:if="{{item.mode=='集体活动'}}">
+            <view wx:if="{{item.direction=='all'}}">活动（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">活动（个人）</view>
+            </view>
+          <view class="detailinfo1" style="color:red" wx:if="{{item.mode=='考试'}}">
+            <view wx:if="{{item.direction=='all'}}">考试（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">考试（个人）</view>
+          </view>
+        </view>
+          <view class="detailinfo0">标题：{{item.name}}</view>
+          <view class="detailinfo">时间：{{item.time}}</view>
+          <view class="detailinfo">详情：{{item.detail}}</view>
+        </view>
+        <view>
+          <view style="font-size:35rpx;font-weight:bold">状态：</view>
+          <view wx:if="{{item.id-week*100-day*10<0}}" style="font-size:35rpx;font-weight:bold;color:grey">已过ddl</view>
+          <view wx:if="{{item.id-week*100-day*10<10&&item.id-week*100-day*10>0}}" style="font-size:35rpx;font-weight:bold;color:red">今日ddl</view>
+          <view wx:if="{{(item.id-week*100-day*10<100)&&(item.id-week*100-day*10>10)}}" style="font-size:35rpx;font-weight:bold;color:orange">少于7天</view>
+          <view wx:if="{{item.id-week*100-day*10>100}}" style="font-size:35rpx;font-weight:bold;color:#0066cc">多于7天</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>  

@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/ddlSheet/index",
+    "pages/manage/index",
+    "pages/basic/index",
+    "pages/addDDL/index",
+    "pages/calendar/index",
+    "pages/studentAdmin/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "基科83班级小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#660874",
+    "list": [
+      {
+        "pagePath": "pages/ddlSheet/index",
+        "text": "时间安排",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/liston.png"
+      },
+      {
+        "pagePath": "pages/manage/index",
+        "text": "信息管理",
+        "iconPath": "images/process.png",
+        "selectedIconPath": "images/processon.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

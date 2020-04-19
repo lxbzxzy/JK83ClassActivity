@@ -1,0 +1,32 @@
+<view class="page">
+<view class="page__bd">
+
+  <view class="page__hd">
+    <view class="page__title">修改基本配置</view>
+    <view class="page__desc">提醒：基本配置包括学期开始时间和学期名称。学期名称示例：2020春，学期开始时间即第一周第一天的日期</view>
+  </view>  
+
+  <view class="weui-cells__title">请输入学期名称</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <input class="weui-input" bindinput="input1" placeholder="{{input1}}"/>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">请选择学期开始时间</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{date}}" start="2020-01-01" end="2022-07-01" bindchange="bindDateChange">
+            <view class="weui-select">当前选择: {{date}}</view>
+          </picker>
+        </view>
+      </view>
+  </view>
+
+  <view class="btn-area">
+    <button class="button" bindtap="submit" type="warn">修改基本配置</button>
+  </view>
+
+</view>
+</view>

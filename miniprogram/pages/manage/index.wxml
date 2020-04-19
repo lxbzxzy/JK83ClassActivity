@@ -1,0 +1,20 @@
+<view>  
+  <view class='title'>管理页面</view>
+  <view class="card">
+    <view class="cardleft">
+      <view class="infoWord">{{basicInfo.name}}同学您好</view>
+      <view class="infoWord2">\t\t今天是{{term}}\t第{{week}}周星期{{day}}</view>
+    </view>
+    <view class="avatar">
+      <open-data type="userAvatarUrl" ></open-data>
+    </view>
+  </view>
+  <button bindtap="quit" class="button2">取消微信绑定</button>
+  <button class="button" bindtap="addMyDDL" type="primary" wx:if="{{basicInfo.canAdmin}}">添加个人活动</button>
+  <button class="button" bindtap="deleteMyDDL" type="warn" wx:if="{{basicInfo.canAdmin}}">取消个人活动</button>
+  <view class="team">-----------以下是班级活动管理----------</view>
+  <button class="button" bindtap="addDDL" type="primary" wx:if="{{basicInfo.canAdmin}}">添加班级活动</button>
+  <button class="button" bindtap="deleteDDL" type="warn" wx:if="{{basicInfo.canAdmin}}">取消班级活动</button>
+  <button class="button" bindtap="basicSet"wx:if="{{basicInfo.canAdmin}}">基本设置</button>
+  <button class="button" bindtap="studentAdmin"wx:if="{{basicInfo.canAdmin}}">学生管理</button>
+</view>

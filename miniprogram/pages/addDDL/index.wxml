@@ -1,0 +1,124 @@
+<view class="page">
+<view class="page__bd" wx:if="{{mode=='add'}}">
+
+  <view class="page__hd" wx:if="{{direction=='all'}}">
+    <view class="page__title">添加班级活动</view>
+    <view class="page__desc">提醒：添加活动请选择活动类型周次和时间。注意：该界面添加活动会向全班同学展示，请勿将个人活动添加其中</view>
+  </view>
+
+  <view class="page__hd" wx:if="{{direction!='all'}}">
+    <view class="page__title">添加个人活动</view>
+    <view class="page__desc">提醒：添加课程请选择活动类型周次和时间。该界面添加的活动仅自己可见。</view>
+  </view>
+
+  <view class="weui-cells__title">请选择模式</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd"> 
+        <picker bindchange="bindPickerChange4" value="{{idindex4}}" range="{{identityarray4}}">
+          <view class="weui-select">当前选择：{{identityarray4[idindex4]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">请输入课程或活动类型</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <input class="weui-input" bindinput="input5" placeholder="{{input5}}"/>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">请输入作业或活动内容</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <input class="weui-input" bindinput="input6" placeholder="{{input6}}"/>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">请选择周次、日期和时间</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd"> 
+        <picker bindchange="bindPickerChange" value="{{idindex}}" range="{{identityarray}}">
+          <view class="weui-select">当前选择：第{{identityarray[idindex]}}周</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd"> 
+          <picker bindchange="bindPickerChange2" value="{{idindex2}}" range="{{identityarray2}}">
+            <view class="weui-select">当前选择：星期{{identityarray2[idindex2]}}</view>
+          </picker>
+        </view>
+      </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd"> 
+        <picker bindchange="bindPickerChange3" value="{{idindex3}}" range="{{identityarray3}}">
+          <view class="weui-select">当前选择：{{identityarray3[idindex3]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-area">
+    <button class="button" bindtap="submit" type="primary">添加ddl或活动</button>
+  </view>
+
+</view>
+
+<view class="page__bd" wx:if="{{mode=='delete'}}">
+
+  <view class="page__hd" wx:if="{{direction=='all'}}">
+    <view class="page__title">取消班级活动</view>
+    <view class="page__desc">提醒：选择时段后会删除该时段所有的作业和活动，如要修改某ddl，请在删除后恢复该时间的其他ddl</view>
+  </view>
+
+  <view class="page__hd" wx:if="{{direction!='all'}}">
+    <view class="page__title">取消个人活动</view>
+    <view class="page__desc">提醒：选择时段后会删除该时段属于你的作业和活动，如要修改某ddl，请在删除后恢复该时间的其他ddl</view>
+  </view>
+
+  <view class="weui-cells__title">请选择周次、日期和时间</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd"> 
+        <picker bindchange="bindPickerChange" value="{{idindex}}" range="{{identityarray}}">
+          <view class="weui-select">当前选择：第{{identityarray[idindex]}}周</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd"> 
+          <picker bindchange="bindPickerChange2" value="{{idindex2}}" range="{{identityarray2}}">
+            <view class="weui-select">当前选择：星期{{identityarray2[idindex2]}}</view>
+          </picker>
+        </view>
+      </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd"> 
+        <picker bindchange="bindPickerChange3" value="{{idindex3}}" range="{{identityarray3}}">
+          <view class="weui-select">当前选择：{{identityarray3[idindex3]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-area">
+    <button class="button" bindtap="submit2" type="warn">删除该时段所有ddl和活动</button>
+  </view>
+
+</view>
+</view>

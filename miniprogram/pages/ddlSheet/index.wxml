@@ -1,0 +1,68 @@
+<view>
+  <view class="title">
+    <view>班级活动与ddl提醒</view>
+    <view style="font-weight:lighter;font-size:30rpx;color:#0066cc;text-decoration:underline" bindtap="gotoCalendar">点击进入日历版</view>
+  </view>
+
+  <view class="weui-cells__title">请选择周次</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd" style="height:100rpx;"> 
+          <picker bindchange="bindPickerChange" style="font-size:35rpx;margin-top:-15rpx;" value="{{idindex}}" range="{{identityarray}}">
+            <view class="weui-select">当前选择：{{identityarray[idindex]}}</view>
+          </picker>
+        </view>
+      </view>
+  </view>
+
+  <view wx:for="{{dealtData}}" wx:key="detail">
+    <view wx:if="{{(item.week==identity1||identity1=='all')&&!item.pastTime}}">
+      <view class="total">
+        <view class="left">
+          <view class="detailinfo1" style="color:darkviolet" wx:if="{{item.mode=='作业'}}">
+            <view wx:if="{{item.direction=='all'}}">作业（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">作业（个人）</view>
+          </view>
+          <view class="detailinfo1" style="color:#0066cc" wx:if="{{item.mode=='集体活动'}}">
+            <view wx:if="{{item.direction=='all'}}">活动（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">活动（个人）</view>
+            </view>
+          <view class="detailinfo1" style="color:red" wx:if="{{item.mode=='考试'}}">
+            <view wx:if="{{item.direction=='all'}}">考试（全班）</view>
+            <view wx:if="{{item.direction!='all'}}">考试（个人）</view>
+            </view>
+          <view class="detailinfo0">标题：{{item.name}}</view>
+          <view class="detailinfo">时间：{{item.time}}</view>
+          <view class="detailinfo">详情：{{item.detail}}</view>
+        </view>
+        <view>
+          <view style="font-size:35rpx;font-weight:bold">状态：</view>
+          <view wx:if="{{item.id-week*100-day*10<10}}" style="font-size:35rpx;font-weight:bold;color:red">今日ddl</view>
+          <view wx:if="{{(item.id-week*100-day*10<100)&&(item.id-week*100-day*10>10)}}" style="font-size:35rpx;font-weight:bold;color:orange">少于7天</view>
+          <view wx:if="{{item.id-week*100-day*10>100}}" style="font-size:35rpx;font-weight:bold;color:#0066cc">多于7天</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="weui-cells__title">已过期任务</view>
+  <view wx:for="{{dealtData}}" wx:key="detail">
+    <view wx:if="{{(item.week==identity1||identity1=='all')&&item.pastTime}}">  
+      <view class="total-past">
+        <view class="left">
+          <view class="detailinfo1" wx:if="{{item.direction=='all'}}">{{item.mode}}（全班）</view>
+          <view class="detailinfo1" wx:if="{{item.direction!='all'}}">{{item.mode}}（个人）</view>
+          <view class="detailinfo0">标题：{{item.name}}</view>
+          <view class="detailinfo">时间：{{item.time}}</view>
+          <view class="detailinfo">详情：{{item.detail}}</view>
+        </view>
+        <view>
+          <view style="font-size:35rpx;font-weight:bold">状态：</view>
+          <view style="font-size:35rpx;font-weight:bold">已过期</view>
+        </view>  
+      </view>
+    </view>
+  </view>
+  
+
+</view>

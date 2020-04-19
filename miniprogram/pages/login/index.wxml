@@ -1,0 +1,9 @@
+<view>
+  <view class="input1">欢迎登录基科83班级小程序</view>
+  <image class="about-banner" src="{{logo}}" mode="aspectFill"></image>
+  <view class="intro">
+  <text class="intro" space="&emsp&emsp">{{intro}}</text>
+  </view>
+  <input class="input" placeholder="请输入姓名" bindinput="input1"/>
+  <button class="button" bindtap="login" type="primary" disabled="{{disabled}}">绑定微信号</button>
+</view>
